@@ -1,0 +1,102 @@
+.TH MKPWD 1 "24 December 2002" "mkpwd v 0.5" "Un*x Reference Manual"
+.SH NAME
+mkpwd \- generate new password
+.SH SYNOPSIS
+.B mkpasswd
+[
+.I options
+]
+[
+.I count
+]
+.SH INTRODUCTION
+.B mkpwd
+prints a randomly generated password to stdout. If 
+.B count
+is provided, mkpwd will generate count-numbers of passwords and
+print them to stdout.
+.SH USAGE
+With no options,
+.B mkpwd
+returns a new password.
+The passwords are randomly generated according to the options below.
+It's standard behavior is to generate a password of a length between
+6 and 10 consisting of any printable ASCII-character.
+.SH OPTIONS
+.TP
+.B \-\-version
+This option lets mkpwd print out the version number and exit.
+All other options are ignored.
+.TP
+.B \-\-help
+Print out short help and exit. All other options are ignored.
+.TP
+.B \-\-min length
+.B length
+must be an integer number. mkpwd will only generate passwords
+with the given minimum length.
+.TP
+.B \-\-max length
+.B length
+must be an integer number. mkpwd will only generate passwords with the
+given maximum length.
+.TP
+.B \-\-uppercase
+generate password with uppercase characters. This only affects characters
+of the US-alphabet.
+.TP
+.B \-\-lowercase
+generate password with lowercase characters. This only affects characters
+of the US-alphabet.
+.TP
+.B \-\-crypt salt
+.B salt
+must be a string of two characters. Every generated password is passed to
+the crypt()-function and the result is printed right after the password itself.
+Please read the manpage of crypt(3) for more information.
+.TP
+.B \-\-type X
+.B X
+must be an integer value between 1 and 7. It specifies the way passwords
+are created. The following types are defined:
+.sp
+.RS +.2i
+.ta 1.0i 2.5i
+.nf
+\fB1\fR - complex, passwords may contain any printable character
+\fB2\fR - alphanum, password may contain [A-Z][a-z][0-9]
+\fB3\fR - alpha, password may contain [A-Z] and [a-z]
+\fB4\fR - numeric, the password is build of numbers only
+\fB5\fR - alphanum-readable, see below
+\fB6\fR - alpha-readable
+\fB7\fR - hexasedicimal
+.fi
+.RE
+.sp
+
+The standard type is 1 (complex). If you use the type "alphanum-readable"
+the password is build of the characters [A-Z] and [a-z]. There is a 10% 
+chance per character for it to become a number [0-9].
+The type "alpha-readable" is the same execpt that no numbers get used.
+Both types try to generate a readable password. This is implemented by
+alternatingly using a consonant and a vocal character.
+
+.SH NOTICE
+The gnu getopt() is really anoying. The arguments to options must be 
+supplied by a equal-sign. You can not use something like "--crypt SA".
+Use "--crypt=SA" instead. This is a strange behavior of getopt() while
+processing arguments which may have an argument.
+
+.SH EXAMPLE
+The following generates 10 passwords consisting only of lowercase 
+alphabetic characters:
+
+	mkpwd --lowercase --type 3 10
+
+.SH AUTHOR
+(c) 1999-2002 by Oliver Schroeder <post@o-schroeder.de>
+
+.B mkpwd
+stands under a BSD like license. See the copyright notice in the source
+file for more information.
+

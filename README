@@ -1,0 +1,76 @@
+			mkpwd - a password generator
+			----------------------------
+		     	        Version 0.3
+
+    mkpwd is a password generating program. It is designed to satisfy
+    a scalable range of security demands. It's standard behavior is
+    to generate one password consisting of any of all printable ASCII
+    characters (32-128) with a length between 6 and 10.
+    You can modify the way passwords are generated via command-line
+    switches. You can specify a length range, the characters used and
+    even let mkpwd generate passwords which are kind of readable and
+    therefore easier to remember (and easier to crack either, see 
+    below).
+    mkpwd was tested under Solaris, FreeBSD and Linux.
+
+
+    INSTALLATION
+    ------------
+
+    Just change your current working directory to the mkpwd source 
+    directory and type (as root) "make install". That's all.
+
+    ALGORITHM
+    ---------
+
+    The algorithm is based on the systems rand()-function (see man 3 rand)
+    and therefore depends heavily on it's implementation. I did some
+    testing on the output of mkpwd which is represented in the table below.
+    I let mkpwd generate 100000 passwords with the parameters listed below.
+    The `*' run was performed using a script-file which started mkpwd 10
+    times at once (i.e. nearly, started in background) and evaluated the
+    output of all 10 instances. The numbers in the table are the numbers
+    printed by 'uniq -d'.
+
+    Table:
+    
+    run   Std  t1  t2  t3   t4   t5    t6      t7     t8   t9
+     1     0    0   0   1    8   29   505    1730    354    1
+     2     0    0   0   2    9   30   519    1630    315    1
+     3     0    0   0   2   10   26   501    1634    322    0
+     4     0    0   1   1    3   31   541    1595    316    0
+     5     0    0   1   4   12   18   521    1607    350    0
+     6     0    0   0   2    5   24   530    1587    357    1
+     7     0    0   0   1   10   33   518    1610    357    1
+     8     0    0   2   1    7   40   529    1652    364    0
+     9     0    0   0   0    8   38   546    1650    341    0
+     0     0    0   1   1   11   26   529    1611    345    0
+     *     0    0  43  171 968  2332 46558  130869  29687  41
+
+     t1: -n 10 -m 10 -t 3 -l (fixed length 10, alpha)
+     t2: -t 5 (alphanum-readable)
+     t3: -t 6 (alpha-readable)
+     t4: -n 6 -m 6 -t 5 (fixed length 6, aplhanum-readable)
+     t5: -n 6 -m 6 -t 6 (fixed length 6, alpha-readable)
+     t6: -n 6 -m 6 -t 5 -l (same as t4, lowercase only)
+     t7: -n 6 -m 6 -t 6 -l (same as t5, lowercase only)
+     t8: -t 4 (numeric-only)
+     t9: -n 10 -m 10 -t 4 (fixed length 10, numeric-only)
+
+     As you can see one gets a lot of doubles if the password length is
+     fixed, especialy if you use a short length. 
+
+     SECURITY
+     --------
+     
+     Generally it is advisable to use only passwords which are generated
+     by mkpwd in it's default mode. If you use options to get rememberable
+     ones, you also make it easier for password cracking programms to guess
+     them. Read 'man 1 passwd' to learn more about passwords and security.
+     If someone would try to crack passwords (e.g. with john) which were 
+     generated with mkpwd with different options I would be appriciated
+     to see the results.
+     
+     November 2000
+     Oliver Schroeder
+
