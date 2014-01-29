@@ -1,25 +1,22 @@
-2010-04-20 oliver
+2014-01-29 oliver
+	* added autoconf
 
+2010-04-20 oliver
 	* mkpwd.c: introduced charset 'non-ambiguous' for password generation
 
 2003-12-03 oliver
-
 	* mkpwd.c: removed getopt_long. Most systems don't have it.
 
 2003-08-14 oliver
-
 	* mkpwd.c: errno.h included, some compilers complained
 
 2002-12-06 oliver
-
 	* mkpwd.c: added new type hex(7) as provided by a patch from
 	Andrzej Szulc.
 
 2002-04-18 oliver
-
 	* mkpwd.c: New switch "--crypt" implemented.
 
 2002-04-18 oliver
-
 	* mkpwd.c: New CVS-Repsository.
 
