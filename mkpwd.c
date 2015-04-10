@@ -1,23 +1,20 @@
 /*********************************************************************
 **
-** $Id: mkpwd.c,v 1.6 2003/12/03 13:26:15 oliver Exp $
+** Copyright 1999-2015 Oliver Schroeder
+** Oliver Schroeder <progs@o-schroeder.de>
 **
-**********************************************************************
+** mkpwd is free software: you can redistribute it and/or modify
+** it under the terms of the GNU General Public License as published by
+** the Free Software Foundation, either version 3 of the License, or
+** (at your option) any later version.
 **
-**	Copyright 1999-2003 Oliver Schroeder
+** mkpwd is distributed in the hope that it will be useful,
+** but WITHOUT ANY WARRANTY; without even the implied warranty of
+** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+** GNU General Public License for more details.
 **
-**	Permission to use, copy, modify, and distribute this
-**	software and its documentation for any purpose and 
-**	without any fee is hereby granted, provided that the 
-**	above copyright notice and this permission notice 
-**	appear in all copies of the software and derivative 
-**	works or modified versions thereof, and that both the 
-**	copyright notice and this permission and disclaimer
-**	notice appear in supporting documentation.
-**
-**	This software is provided "as is" WITHOUT ANY WARRANTY.
-**
-**	Oliver Schroeder <progs@o-schroeder.de>
+** You should have received a copy of the GNU General Public License
+** along with fgms.  If not, see <http://www.gnu.org/licenses/>
 **
 *********************************************************************/
 
@@ -28,8 +25,8 @@
 #include <errno.h>
 
 const char* PROGRAM	= "mkpwd";
-const char* VERSION	= "0.8";
-const char* COPYRIGHT	= "(c) 1999-2010 Oliver Schroeder";
+const char* VERSION	= "1.1";
+const char* COPYRIGHT	= "(c) 1999-2015 Oliver Schroeder";
 
 /*********************************************************************
 **
@@ -75,6 +72,7 @@ char* CONSONANT =
 	"BCDFGHJKLMNPQRSTVWXZbcdfghjklmnpqrstvwxz";
 char* VOCAL = "AEIOUYaeiouy";
 char* HEX_NUM = "0123456789ABCDEF";
+char* STANDARD = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz!$%&/=?+-#";
 enum COMPLEXITY_MODES
 {
 	IS_COMPLEX		= 1,
@@ -85,6 +83,7 @@ enum COMPLEXITY_MODES
 	IS_ALPHA_READABLE	= 6,
 	IS_HEX_NUM		= 7,
 	IS_NON_AMBIGUOUS	= 8,
+	IS_STANDARD		= 9,
 	INVALID_COMPLEXITY
 };
 enum UPPER_OR_LOWER_MODES
@@ -131,6 +130,7 @@ void Help ()
 	printf ("			type 6: alpha, readable\n");
 	printf ("			type 7: hexadecimal\n");
 	printf ("			type 8: alphanum non-ambiguous\n");
+	printf ("			type 9: alphanum non-ambiguous with special chars\n");
 	printf ("-u			use only uppercase characters\n");
 	printf ("-l			use only lowercase characters\n");
 	printf ("-c [salt]		crypt the password with crypt(3)\n");
@@ -363,6 +363,12 @@ void PrepareAndDo ()
 			break;
 		case IS_NON_AMBIGUOUS:
 			VALID_CHARS = NON_AMBIGUOUS;
+			RANGE = strlen (VALID_CHARS);
+			for (I = 0; I < NUM_PWDS; I++)
+				BuildPassword ();
+			break;
+		case IS_STANDARD:
+			VALID_CHARS = STANDARD;
 			RANGE = strlen (VALID_CHARS);
 			for (I = 0; I < NUM_PWDS; I++)
 				BuildPassword ();
