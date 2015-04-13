@@ -37,7 +37,7 @@ const char* COPYRIGHT	= "(c) 1999-2015 Oliver Schroeder";
 int	MIN_PWD_LENGTH  = 6;	/* minimum length of a password		*/
 int	MAX_PWD_LENGTH	= 10;	/* maximum length of a password		*/
 int	NUM_PWDS	= 1;	/* number of passwords to generate	*/
-int	COMPLEXITY	= 1;	/* standard type is COMPLEX		*/
+int	COMPLEXITY	= 0;	/* standard type is STANDARD		*/
 int	UPPER_LOWER	= 0;	/* standard is leave password untouched */
 int	DO_CRYPT	= 0;	/* 0 - don't crypt, 1 - crypt		*/
 char*	CRYPT_SALT	= 0;
@@ -75,6 +75,7 @@ char* HEX_NUM = "0123456789ABCDEF";
 char* STANDARD = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz!$%&/=?+-#";
 enum COMPLEXITY_MODES
 {
+	IS_STANDARD		= 0,
 	IS_COMPLEX		= 1,
 	IS_ALPHANUM		= 2,
 	IS_ALPHA		= 3,
@@ -83,7 +84,6 @@ enum COMPLEXITY_MODES
 	IS_ALPHA_READABLE	= 6,
 	IS_HEX_NUM		= 7,
 	IS_NON_AMBIGUOUS	= 8,
-	IS_STANDARD		= 9,
 	INVALID_COMPLEXITY
 };
 enum UPPER_OR_LOWER_MODES
