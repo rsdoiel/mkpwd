@@ -84,6 +84,7 @@ enum COMPLEXITY_MODES
 	IS_ALPHA_READABLE	= 6,
 	IS_HEX_NUM		= 7,
 	IS_NON_AMBIGUOUS	= 8,
+	IS_WITH_SPECIAL		= 9,
 	INVALID_COMPLEXITY
 };
 enum UPPER_OR_LOWER_MODES
@@ -192,7 +193,7 @@ void ParseParams ( int argc, char* argv[] )
 			    }
 			    if ((COMPLEXITY < 1) || (COMPLEXITY >= INVALID_COMPLEXITY))
 			    {
-				    printf("type is out of range (1-7)\n");
+				    printf("type is out of range\n");
 				    exit (ARG_ERROR);
 			    }
 			    break;
@@ -367,12 +368,6 @@ void PrepareAndDo ()
 			for (I = 0; I < NUM_PWDS; I++)
 				BuildPassword ();
 			break;
-		case IS_STANDARD:
-			VALID_CHARS = STANDARD;
-			RANGE = strlen (VALID_CHARS);
-			for (I = 0; I < NUM_PWDS; I++)
-				BuildPassword ();
-			break;
 		case IS_ALPHANUM_READABLE:
 			for (I = 0; I < NUM_PWDS; I++)
 				BuildReadablePwd ();
@@ -386,6 +381,13 @@ void PrepareAndDo ()
 			RANGE = strlen (VALID_CHARS);
 		        for (I=0; I< NUM_PWDS; I++)
 				BuildPassword();
+			break;
+		case IS_WITH_SPECIAL:
+		case IS_STANDARD:
+			VALID_CHARS = STANDARD;
+			RANGE = strlen (VALID_CHARS);
+			for (I = 0; I < NUM_PWDS; I++)
+				BuildPassword ();
 			break;
 	} // switch
 }
