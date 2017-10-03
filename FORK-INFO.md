@@ -16,5 +16,7 @@ I setup my fork as follows
     tar xvf mkpwd-1.6.tar.gz
     cp -v mkpwd-1.6/* ./
     git commit -am "merge 1.6 from tarfile"
+    rm -fR mkpwd-1.6 mkpwd-1.6.tar.gz
+    git push origin master
 ```
 
