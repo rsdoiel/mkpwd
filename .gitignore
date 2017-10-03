@@ -11,4 +11,7 @@ missing
 mkpwd
 *.o
 stamp-h1
-
+tmp/*
+*.tar.gz
+mkpwd-1.6
+*.swp
