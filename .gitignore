@@ -15,3 +15,4 @@ tmp/*
 *.tar.gz
 mkpwd-1.6
 *.swp
+compile

@@ -13,10 +13,24 @@ I setup my fork as follows
     git fetch upstream
     git pull upstream master
     wget http://www.o-schroeder.de/download/mkpwd/mkpwd-1.6.tar.gz
-    tar xvf mkpwd-1.6.tar.gz
+    tar zxvf mkpwd-1.6.tar.gz
     cp -v mkpwd-1.6/* ./
     git commit -am "merge 1.6 from tarfile"
     rm -fR mkpwd-1.6 mkpwd-1.6.tar.gz
     git push origin master
+```
+
+After fixing the version number in mkpwd.c to reflect the version in the
+comments commited and pushed to my master.
+
+Installation process is now
+
+```shell
+    git clone git@github.com:rsdoiel/mkpwd src/github.com/rsdoiel/mkpwd
+    cd src/github.com/rsdoiel/mkpwd
+    ./autogen.sh
+    ./configure --prefix=$HOME
+    make
+    make install
 ```
 
