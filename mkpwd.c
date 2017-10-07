@@ -28,7 +28,7 @@
 #include <errno.h>
 
 const char* PROGRAM	= "mkpwd";
-const char* VERSION	= "0.8";
+const char* VERSION	= "1.6";
 const char* COPYRIGHT	= "(c) 1999-2010 Oliver Schroeder";
 
 /*********************************************************************
