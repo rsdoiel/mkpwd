@@ -9,9 +9,11 @@ I setup my fork as follows
 
 ```shell
     git clone git@github.com:rsdoiel/mkpwd
+    cd mkpwd
     git remote add upstream git://git.code.sf.net/p/mkpwd/code
     git fetch upstream
     git pull upstream master
+    # Merge 1.6 improvements
     wget http://www.o-schroeder.de/download/mkpwd/mkpwd-1.6.tar.gz
     tar zxvf mkpwd-1.6.tar.gz
     cp -v mkpwd-1.6/* ./
