@@ -30,12 +30,11 @@ comments commited and pushed to my master.
 
 Since I am targetting Mac OS X and it nolonger has a **libcrypt**
 and provides the `crypt` function via `<unistd.h>`.
-I've commented out the section in the `configure.ac` to prevent
-a fail in configure as avoid generating
-a `LIB=-lcrypt` in Makefile. 
+I've commented out the section in the `configure.ac`  and 
+also changed Makefile.am to exclude the `LIB = -lcrypt`.
 
-Additionally I've explicitly add a `#include <ctype.h>` to 
-`mkpwd.d` to avoid an error about `tolower()` function definition.
+I've explicitly add a `#include <ctype.h>` to 
+`mkpwd.c` to avoid an error about `tolower()` function definition.
 
 ## Installing on Mac OX S (Mojave)
 
