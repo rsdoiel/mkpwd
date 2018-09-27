@@ -1,11 +1,12 @@
 
-This is a fork of Oliver Schröder's mkpwd because I always forget where Oliver's website is
-and can't remember the URL for the repository for his highly convientent _mkpwd_ utility.
+This is a fork of Oliver Schröder's mkpwd because I always forget where 
+Oliver's website is and the URL for the repository for his highly 
+convientent _mkpwd_ utility.
 
 His website URL is http://www.o-schroeder.de/projects/mkpwd
 The URL for the repository is git://git.code.sf.net/p/mkpwd/code
 
-I setup my fork as follows
+How created my fork:
 
 ```shell
     git clone git@github.com:rsdoiel/mkpwd
@@ -22,10 +23,31 @@ I setup my fork as follows
     git push origin master
 ```
 
-After fixing the version number in mkpwd.c to reflect the version in the
+I fixing the version number in mkpwd.c to reflect the version in the
 comments commited and pushed to my master.
 
-Installation process is now
+## Additional changes
+
+Since I am targetting Mac OS X and it nolonger has a **libcrypt**
+and provides the `crypt` function via `<unistd.h>`.
+I've commented out the section in the `configure.ac` to prevent
+a fail in configure as avoid generating
+a `LIB=-lcrypt` in Makefile. 
+
+Additionally I've explicitly add a `#include <ctype.h>` to 
+`mkpwd.d` to avoid an error about `tolower()` function definition.
+
+## Installing on Mac OX S (Mojave)
+
+You need XCode 10 installed along with the command line tools
+
+```shell
+    xcode-select --install
+    xcodebuild -license
+```
+
+After that do the following.
+
 
 ```shell
     git clone git@github.com:rsdoiel/mkpwd src/github.com/rsdoiel/mkpwd
