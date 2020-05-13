@@ -26,7 +26,6 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
-#include <ctype.h>
 
 const char* PROGRAM	= "mkpwd";
 const char* VERSION	= "0.8";
