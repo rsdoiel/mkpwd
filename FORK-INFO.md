@@ -23,9 +23,6 @@ How created my fork:
     git push origin master
 ```
 
-I fixing the version number in mkpwd.c to reflect the version in the
-comments commited and pushed to my master.
-
 ## Additional changes
 
 Since I am targetting Mac OS X and it nolonger has a **libcrypt**
