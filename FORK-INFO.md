@@ -20,7 +20,10 @@ How created my fork:
     cp -v mkpwd-1.6/* ./
     git commit -am "merge 1.6 from tarfile"
     rm -fR mkpwd-1.6 mkpwd-1.6.tar.gz
-    git push origin master
+    mv mkpwd.c mkpwd.c.bak
+    # Correct the const VERSION in mkpwd.c to match release.
+    cat mkpwd.c.bak | sed -E 's/= "0.8";/= "1.6";/' > mkpwd.c
+    git push origin main
 ```
 
 ## Additional changes
